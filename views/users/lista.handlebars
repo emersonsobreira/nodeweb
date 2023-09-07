@@ -2,11 +2,17 @@
     <tr>
         <td>ID</td>
         <td>Nome</td>
+        <td>Email</td>
     </tr>
     {{#each users}}
         <tr>
             <td>{{this.id}}</td>
             <td>{{this.nome}}</td>
+            <td>{{this.email}}</td>
+            <td><a href="/users/delete/{{this.id}}">Excluir</a></td>
+            <td><a href="/users/edit/{{this.id}}">edit</a></td>
+            <td><a href="/users/view/{{this.id}}">Visualizar</a></td>
+
         </tr>
     {{/each}}
 </table>

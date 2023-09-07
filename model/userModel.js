@@ -9,11 +9,11 @@ function getUser(id) {
 }
 
 function save(user) {
-  return db.query('INSERT INTO users (nome) VALUES (?)', [user.nome]);
+  return db.query('INSERT INTO users (nome, email) VALUES (?, ?)', [user.nome, user.email]);
 }
 
 function alterar(user) {
-  return db.query('UPDATE users SET nome = ?  WHERE id = ?', [user.nome, user.id])
+  return db.query('UPDATE users SET nome = ?, email = ? WHERE id = ? ', [user.nome, user.email, user.id])
 }
 
 function excluir(user_id) {

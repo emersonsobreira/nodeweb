@@ -1,62 +1,57 @@
-const userModel = require('../model/userModel');
+const postModel = require('../model/postModel');
 
 async function lista(req, res) {
   try {
-    const dados = await userModel.getAll();
-    users = dados[0]
-    res.render('users/lista', { users })
+    const dados = await postModel.getAll();
+    post = dados[0]
+    res.render('post/lista', { post })
   } catch (error) {
     console.log(error)
   }
 }
 
 async function visualizar(req, res) {
-  const userId = parseInt(req.params.id);
+  const postId = parseInt(req.params.id);
   try {
-    const dados = await userModel.getUser(userId);
+    const dados = await postModel.getPost(postId);
     if (dados[0].length > 0) {
-      user = dados[0][0]
-      res.render('users/visualizar', { user })
+      post = dados[0][0]
+      res.render('post/visualizar', { post })
     } else {
-      res.status(404).json({ error: 'User Não encontrado' });
+      res.status(404).json({ error: 'Post Não encontrado' });
     }
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
-
 async function novo(req, res) {
-    res.render('users/new')
+    res.render('posts/new')
 }
 
 
-
 async function salvar(req, res) {
-  const { nome, email } = req.body;
+  const { nome } = req.body;
   if (!nome) {
     res.status(400).json({ error: 'nome querido' });
     return;
   }
-  const newUser = {
-    nome, 
-    email
+  const newPost = {
+    nome
   }
   try {
-    await userModel.save(newUser);
-    res.redirect('/users/index')
+    await postModel.save(newPost);
+    res.redirect('/posts/index')
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
-
-
 async function edit(req, res) {
-  const userId = parseInt(req.params.id);
+  const postId = parseInt(req.params.id);
   try {
-    const dados = await userModel.getUser(userId);
+    const dados = await postModel.getPost(postId);
     if (dados[0].length > 0) {
-      user = dados[0][0]
-      res.render('users/edit', { user })
+      post = dados[0][0]
+      res.render('posts/edit', { post })
     } else {
       res.status(404).json({ error: 'User Não encontrado' });
     }
@@ -66,29 +61,28 @@ async function edit(req, res) {
 }
 
 async function alterar(req, res) {
-  const { id, nome, email } = req.body;
+  const { id, nome } = req.body;
   if (!nome) {
     res.status(400).json({ error: 'nome obrigatorio' });
     return;
   }
-  const updateUser = {
+  const updatePost = {
     id,
-    nome,
-    email
+    nome
   }
   try {
-    await userModel.alterar(updateUser);
-    res.redirect('/users/index')
+    await postModel.alterar(updatePost);
+    res.redirect('/posts/index')
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
 
 async function excluir(req, res) {
-  const userId = parseInt(req.params.id);
+  const postId = parseInt(req.params.id);
   try {
-    await userModel.excluir(userId);
-    res.redirect('/users/index')
+    await postModel.excluir(postId);
+    res.redirect('/posts/index')
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
