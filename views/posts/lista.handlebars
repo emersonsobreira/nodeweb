@@ -1,0 +1,20 @@
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Titulo</td>
+        <td>texto</td>
+    </tr>
+    {{#each posts}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.titulo}}</td>
+            <td>{{this.texto}}</td>
+            <td><a href="/posts/delete/{{this.id}}">Excluir</a></td>
+            <td><a href="/posts/edit/{{this.id}}">edit</a></td>
+            <td><a href="/posts/view/{{this.id}}">Visualizar</a></td>
+
+        </tr>
+    {{/each}}
+</table>
+
+

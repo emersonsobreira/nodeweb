@@ -3,8 +3,8 @@ const postModel = require('../model/postModel');
 async function lista(req, res) {
   try {
     const dados = await postModel.getAll();
-    post = dados[0]
-    res.render('post/lista', { post })
+    posts = dados[0]
+    res.render('posts/lista', { posts })
   } catch (error) {
     console.log(error)
   }
@@ -16,7 +16,7 @@ async function visualizar(req, res) {
     const dados = await postModel.getPost(postId);
     if (dados[0].length > 0) {
       post = dados[0][0]
-      res.render('post/visualizar', { post })
+      res.render('posts/visualizar', { post })
     } else {
       res.status(404).json({ error: 'Post Não encontrado' });
     }
@@ -30,13 +30,15 @@ async function novo(req, res) {
 
 
 async function salvar(req, res) {
-  const { nome } = req.body;
-  if (!nome) {
+  const {id, titulo, texto } = req.body;
+  if (!titulo) {
     res.status(400).json({ error: 'nome querido' });
     return;
   }
   const newPost = {
-    nome
+    id,
+    titulo,
+    texto
   }
   try {
     await postModel.save(newPost);
@@ -61,14 +63,15 @@ async function edit(req, res) {
 }
 
 async function alterar(req, res) {
-  const { id, nome } = req.body;
-  if (!nome) {
-    res.status(400).json({ error: 'nome obrigatorio' });
+  const { id, titulo, texto } = req.body;
+  if (!titulo) {
+    res.status(400).json({ error: 'titulo obrigatorio' });
     return;
   }
   const updatePost = {
     id,
-    nome
+    titulo,
+    texto
   }
   try {
     await postModel.alterar(updatePost);
