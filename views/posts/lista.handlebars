@@ -1,17 +1,26 @@
-<table border="1">
+<table class="table table-hover">
     <tr>
         <td>ID</td>
         <td>Titulo</td>
         <td>texto</td>
+        <link rel="stylesheet" href="/css/style.scss">
+        
     </tr>
     {{#each posts}}
         <tr>
             <td>{{this.id}}</td>
             <td>{{this.titulo}}</td>
             <td>{{this.texto}}</td>
-            <td><a href="/posts/delete/{{this.id}}">Excluir</a></td>
-            <td><a href="/posts/edit/{{this.id}}">edit</a></td>
-            <td><a href="/posts/view/{{this.id}}">Visualizar</a></td>
+          <td>
+    <button class="btn btn-secondary">
+        <a href="/posts/delete/{{this.id}}" style="text-decoration: none;">Excluir</a>
+    </button>
+</td>
+            <td><button class="btn btn-secondary">
+                <a href="/posts/edit/{{this.id}}" style="text-decoration: none;">edit</a></td></button>
+
+            <td><button class="btn btn-secondary">
+            <a href="/posts/view/{{this.id}}" style="text-decoration: none;">Visualizar</a></td></button>
 
         </tr>
     {{/each}}

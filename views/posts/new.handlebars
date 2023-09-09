@@ -1,11 +1,23 @@
-<form action="/posts/add" method="post">
-    <label>Titulo</label>
-    <input name="titulo"/>
-    <label>Texto:</label>
 
-<textarea id="textos" name="texto" rows="5" cols="60">
+<form action="/posts/add" method="post">
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+  <input name="titulo" class="form-control" id="exampleFormControlInput1" placeholder="Digite o titulo">
+</div>
+    </div>
+<div class="row">
+    <div class="col-md-4">
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Texto</label>
+  <textarea class="form-control" id="textos" name="texto" rows="3"></textarea>
+</div>
 
 </textarea>
+<button class="btn btn-primary" type="submit">Enviar
+</button>
 
-    <input type="submit" value="Enviar"/>
+
 </form>

@@ -1,7 +1,48 @@
-<label>ID</label>
-<input value="{{post.id}}" readonly/>
-<label>titulo</label>
-<input value="{{post.titulo}}"  readonly/>
-<label>texto</label>
-<textarea name="" id="" cols="30" rows="10">{{post.texto}}</textarea>
-        
+<div class="form-container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Id</label>
+        <input
+          name="titulo"
+          class="form-control"
+          value="{{post.id}}"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+        <input
+          name="titulo"
+          class="form-control"
+          value="{{post.titulo}}"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label
+          for="exampleFormControlTextarea1"
+          class="form-label"
+        >Texto</label>
+        <textarea
+          class="form-control"
+          id="textos"
+          name="texto"
+          rows="3"
+          readonly
+        >{{post.texto}}</textarea>
+
+      </div>
+    </div>
+  </div>
+</div>
