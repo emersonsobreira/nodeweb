@@ -1,6 +1,8 @@
 const userModel = require('../model/userModel');
+const mainController = require('./mainController');
 
 async function lista(req, res) {
+ // mainController.verificar_session(req, res)
   try {
     const dados = await userModel.getAll();
     users = dados[0]
@@ -11,6 +13,7 @@ async function lista(req, res) {
 }
 
 async function visualizar(req, res) {
+  mainController.verificar_session(req, res)
   const userId = parseInt(req.params.id);
   try {
     const dados = await userModel.getUser(userId);
@@ -32,14 +35,15 @@ async function novo(req, res) {
 
 
 async function salvar(req, res) {
-  const { nome, email } = req.body;
+  const { nome, email, senha } = req.body;
   if (!nome) {
     res.status(400).json({ error: 'nome querido' });
     return;
   }
   const newUser = {
-    nome, 
-    email
+    nome,
+    email,
+    senha
   }
   try {
     await userModel.save(newUser);
@@ -51,6 +55,7 @@ async function salvar(req, res) {
 
 
 async function edit(req, res) {
+  mainController.verificar_session(req, res)
   const userId = parseInt(req.params.id);
   try {
     const dados = await userModel.getUser(userId);
@@ -66,7 +71,7 @@ async function edit(req, res) {
 }
 
 async function alterar(req, res) {
-  const { id, nome, email } = req.body;
+  const { id, nome, email, senha } = req.body;
   if (!nome) {
     res.status(400).json({ error: 'nome obrigatorio' });
     return;
@@ -74,7 +79,8 @@ async function alterar(req, res) {
   const updateUser = {
     id,
     nome,
-    email
+    email,
+    senha
   }
   try {
     await userModel.alterar(updateUser);
@@ -85,6 +91,7 @@ async function alterar(req, res) {
 }
 
 async function excluir(req, res) {
+  mainController.verificar_session(req, res)
   const userId = parseInt(req.params.id);
   try {
     await userModel.excluir(userId);

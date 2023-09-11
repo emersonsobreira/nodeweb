@@ -2,7 +2,7 @@
     <tr>
         <td>ID</td>
         <td>Titulo</td>
-        <td>texto</td>
+
         <link rel="stylesheet" href="/css/style.scss">
         
     </tr>
@@ -10,12 +10,13 @@
         <tr>
             <td>{{this.id}}</td>
             <td>{{this.titulo}}</td>
-            <td>{{this.texto}}</td>
+            <td>{{this.nome}}</td>
+
           <td>
-    <button class="btn btn-secondary">
-        <a href="/posts/delete/{{this.id}}" style="text-decoration: none;">Excluir</a>
-    </button>
-</td>
+                <button class="btn btn-secondary">
+                    <a href="/posts/delete/{{this.id}}" style="text-decoration: none;">Excluir</a>
+                </button>
+            </td>
             <td><button class="btn btn-secondary">
                 <a href="/posts/edit/{{this.id}}" style="text-decoration: none;">edit</a></td></button>
 

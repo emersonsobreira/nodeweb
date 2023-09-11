@@ -15,7 +15,11 @@
   <textarea class="form-control" id="textos" name="texto" rows="3"></textarea>
 </div>
 
-</textarea>
+  <select name="users_id">
+        {{#each users}}
+            <option value="{{this.id}}">{{this.nome}}</option>
+        {{/each}}
+    </select>
 <button class="btn btn-primary" type="submit">Enviar
 </button>
 
